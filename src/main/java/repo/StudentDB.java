@@ -2,6 +2,7 @@ package repo;
 
 import model.Student;
 
+import javax.management.AttributeNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,6 +20,9 @@ public class StudentDB {
 
     public void addStudents(Student student){
         students.put(student.getId(), student);
+        if(students.get(student.getId()).getName() == ""){
+            throw new IllegalArgumentException("Student name is not filled in!");
+        }
     }
 
     public void removeStudents(Student student){
@@ -27,6 +31,20 @@ public class StudentDB {
 
     public HashMap<String, Student> getStudents() {
         return students;
+    }
+
+    public Student findById(String id){
+        if(!students.containsKey(id)){
+            throw new IllegalArgumentException("Invalid id!");
+        }
+//        Student student;
+//        try{
+//            student = students.get(id);
+//        }catch (Exception e){
+//            throw new NullPointerException("Invalid id!");
+//        }
+
+        return students.get(id);
     }
 
     public void setStudents(HashMap<String, Student> students) {

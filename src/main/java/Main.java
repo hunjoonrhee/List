@@ -32,12 +32,13 @@ public class Main {
         StudentDB studentDB = new StudentDB();
         studentDB.setStudents(students);
         System.out.println(studentDB);
-
         studentDB.addStudents(new Student("Pascal", "283", "Computer Science"));
         System.out.println(studentDB);
 
         studentDB.removeStudents(students.get("123"));
         System.out.println(studentDB);
+
+        System.out.println(studentDB.findById("2"));
 
 
     }
